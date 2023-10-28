@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const flash = require('req-flash');
 const app = express();
+images = [{image: "./src/Public/Background.jpg"}];
 
 // Definisi lokasi file router
 const loginRoutes = require('./src/routes/router-login');
@@ -29,7 +30,8 @@ app.use(session({
     },
 }))
 app.use(flash());
-app.use(express.static(path.join(__dirname, 'src/assets')));
+app.use(express.static(path.join(__dirname, 'src/public')));
+// app.use(express.static(path.join(__dirname, 'src/assets')));
 
 // Setting folder views
 app.set('views',path.join(__dirname,'src/views'));
@@ -50,8 +52,6 @@ app.use(function(req, res, next) {
     next();
 });
 // end
-
-app.set('views',path.join(__dirname,'src/views'));
 
 // Gunakan port server
 app.listen(5000, ()=>{
